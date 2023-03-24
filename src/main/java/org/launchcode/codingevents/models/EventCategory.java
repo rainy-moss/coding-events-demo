@@ -10,48 +10,21 @@ import java.util.Objects;
  * Created by Chris Bay
  */
 @Entity
-public class EventCategory {
-
+public class EventCategory extends AbstractEntity {
     @Id
     @GeneratedValue
     private int id;
-
-    @Size(min=3, message="Name must be at least 3 characters long")
     private String name;
+    private String description;
+    private String contactEmail;
+    private EventType type;
 
-    public EventCategory(@Size(min = 3, message = "Name must be at least 3 characters long") String name) {
-        this.name = name;
+    public EventCategory(String name, String description, String contactEmail, EventType type) {
+        super(name, description, contactEmail, type);
     }
 
-    public EventCategory() {}
+    public EventCategory(){
 
-    public String getName() {
-        return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    @Override
-    public String toString() {
-        return name;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        EventCategory that = (EventCategory) o;
-        return id == that.id;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
 }
